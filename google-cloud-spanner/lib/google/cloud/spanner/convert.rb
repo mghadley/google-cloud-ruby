@@ -30,6 +30,7 @@ module Google
 
         module ClassMethods
           def to_query_params params, types = nil
+            byebug
             types ||= {}
             formatted_params = params.map do |key, obj|
               [String(key), object_to_grpc_value_and_type(obj, types[key])]
@@ -38,6 +39,7 @@ module Google
           end
 
           def object_to_grpc_value_and_type obj, field = nil
+            byebug
             obj = obj.to_column_value if obj.respond_to? :to_column_value
 
             if obj.respond_to? :to_grpc_value_and_type
